@@ -4,7 +4,7 @@ using RPG.Core;
 
     namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponsRange = 2f;
 
@@ -21,7 +21,7 @@ using RPG.Core;
             }
             else
             {
-                GetComponent<Mover>().Stop();
+                GetComponent<Mover>().Cancel();
             }
         }
 
