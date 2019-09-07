@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Movement;
 
     namespace RPG.Combat
@@ -13,7 +11,9 @@ using RPG.Movement;
 
         private void Update()
         {
-            bool isInRange = Vector3.Distance(transform.position, target.position) < weaponsRange;
+            if (target == null) return;
+
+            bool isInRange = GetIsInRange();
             if (target != null && !isInRange)
             {
                 GetComponent<Mover>().MoveTo(target.position);
@@ -24,9 +24,19 @@ using RPG.Movement;
             }
         }
 
+        private bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.position) < weaponsRange;
+        }
+
         public void Attack(CombatTarget combatTarget)
         {
             target = combatTarget.transform;
+        }
+
+        public void Cancel()
+        {
+            target = null;
         }
     }
 }
