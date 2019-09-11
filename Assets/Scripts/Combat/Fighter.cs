@@ -22,7 +22,13 @@ using RPG.Core;
             else
             {
                 GetComponent<Mover>().Cancel();
+                AttackBehaviour();
             }
+        }
+
+        private void AttackBehaviour()
+        {
+            GetComponent<Animator>().SetTrigger("attack");
         }
 
         private bool GetIsInRange()
@@ -39,6 +45,12 @@ using RPG.Core;
         public void Cancel()
         {
             target = null;
+        }
+
+        // animation event
+        void Hit()
+        {
+
         }
     }
 }
