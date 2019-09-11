@@ -7,11 +7,15 @@ using RPG.Core;
     public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponsRange = 2f;
+        [SerializeField] float timeBetweenAttacks = 1f;
 
         Transform target;
+        float timeSinceLastAttack = 0;
 
         private void Update()
         {
+            timeSinceLastAttack += Time.deltaTime;
+
             if (target == null) return;
 
             bool isInRange = GetIsInRange();
@@ -28,7 +32,13 @@ using RPG.Core;
 
         private void AttackBehaviour()
         {
-            GetComponent<Animator>().SetTrigger("attack");
+            if(timeSinceLastAttack > timeBetweenAttacks)
+            {
+                GetComponent<Animator>().SetTrigger("attack");
+                timeSinceLastAttack = 0;
+            }
+
+           
         }
 
         private bool GetIsInRange()
