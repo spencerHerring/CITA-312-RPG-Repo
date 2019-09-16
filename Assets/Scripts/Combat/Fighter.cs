@@ -11,7 +11,7 @@ using RPG.Core;
         [SerializeField] float weaponsDamage = 2f;
 
         Health target;
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         private void Update()
         {
