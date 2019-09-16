@@ -45,5 +45,11 @@ namespace RPG.Control
             return distanceToPlayer < chaseDistance;
         }
 
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
+        }
     }
 }
