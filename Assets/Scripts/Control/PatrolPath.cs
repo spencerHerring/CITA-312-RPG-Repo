@@ -12,13 +12,13 @@ namespace RPG.Control
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                int j = NewMethod(i);
+                int j = GetNextIndex(i);
                 Gizmos.DrawSphere(GetWaypoint(i), waypointGizmoRaduis);
                 Gizmos.DrawLine(GetWaypoint(i), GetWaypoint(j));
             }
         }
 
-        private int NewMethod(int i)
+        public int GetNextIndex(int i)
         {
             if (i +1 >= transform.childCount)
             {
@@ -27,7 +27,7 @@ namespace RPG.Control
             return i + 1;
         }
 
-        private Vector3 GetWaypoint(int i)
+        public Vector3 GetWaypoint(int i)
         {
             return transform.GetChild(i).position;
         }
